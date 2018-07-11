@@ -153,6 +153,10 @@ static void * const kMXScrollViewKVOContext = (void*)&kMXScrollViewKVOContext;
 
 - (void)removeObserverFromView:(UIScrollView *)scrollView {
     @try {
+        if ([scrollView isKindOfClass:UITableView.class]) {
+            UITableView *tableView = (UITableView *)scrollView;
+            [tableView reloadData];
+        }
         [scrollView removeObserver:self
                         forKeyPath:NSStringFromSelector(@selector(contentOffset))
                            context:kMXScrollViewKVOContext];
