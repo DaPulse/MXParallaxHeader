@@ -1,6 +1,6 @@
 // MXScrollViewExample.m
 //
-// Copyright (c) 2017 Maxime Epain
+// Copyright (c) 2019 Maxime Epain
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -41,7 +41,7 @@
     [self.scrollView addSubview:self.table2];
     
     // Parallax Header
-    self.scrollView.parallaxHeader.view = [NSBundle.mainBundle loadNibNamed:@"StarshipHeader" owner:self options:nil].firstObject; // You can set the parallax header view from a nib.
+    [self.scrollView.parallaxHeader loadWithNibName:@"StarshipHeader" bundle:nil options:nil]; // You can set the parallax header view from a nib.
     self.scrollView.parallaxHeader.height = 300;
     self.scrollView.parallaxHeader.mode = MXParallaxHeaderModeFill;
     self.scrollView.parallaxHeader.minimumHeight = self.topLayoutGuide.length;
@@ -56,7 +56,7 @@
 // In this example I use manual layout for peformances
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    CGRect frame = self.view.frame;
+    CGRect frame = self.view.bounds;
     
     //Update scroll view frame and content size
     self.scrollView.frame = frame;
